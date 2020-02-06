@@ -1,0 +1,27 @@
+{
+  "name": "baconfy/auth",
+  "description": "Baconfy Authentication Module",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Renato Dehnhardt",
+      "email": "renatotkd@gmail.com"
+    }
+  ],
+  "require": {
+    "baconfy/support": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Baconfy\\Auth\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Baconfy\\Auth\\AuthServiceProvider"
+      ]
+    }
+  }
+}

@@ -1,8 +1,12 @@
 {
   "name": "baconfy/auth",
-  "description": "Baconfy Authentication Module",
-  "type": "library",
+  "description": "Baconfy auth package.",
   "license": "MIT",
+  "homepage": "https://baconfy.com",
+  "support": {
+    "issues": "https://github.com/baconfy/framework/issues",
+    "source": "https://github.com/baconfy/framework"
+  },
   "authors": [
     {
       "name": "Renato Dehnhardt",
@@ -10,17 +14,22 @@
     }
   ],
   "require": {
-    "baconfy/support": "~6.0"
+    "baconfy/support": "^6.0",
+    "baconfy/module": "^6.0",
+    "baconfy/ui": "^6.0"
   },
   "autoload": {
     "psr-4": {
-      "Baconfy\\Auth\\": "src/"
+      "Baconfy\\Auth\\": ""
     }
   },
   "extra": {
+    "branch-alias": {
+      "dev-master": "6.x-dev"
+    },
     "laravel": {
       "providers": [
-        "Baconfy\\Auth\\AuthServiceProvider"
+        "Baconfy\\Auth\\Module"
       ]
     }
   }

@@ -33,6 +33,6 @@ class ConfirmPasswordController extends Controller
      */
     public function showConfirmForm()
     {
-        return view(config('auth.views.confirm'));
+        return view('auth::passwords.confirm');
     }
 }

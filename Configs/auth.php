@@ -46,23 +46,4 @@ return [
 
     'verify' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Views
-    |--------------------------------------------------------------------------
-    |
-    | This option provides the auth views.
-    |
-    */
-
-    'views' => [
-        'confirm' => 'ui::auth.confirm',
-        'email' => 'ui::auth.email',
-        'login' => 'ui::auth.login',
-        'register' => 'ui::auth.register',
-        'reset' => 'ui::auth.reset',
-        'verify' => 'ui::auth.verify',
-    ],
-
-
 ];

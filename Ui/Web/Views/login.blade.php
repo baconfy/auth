@@ -8,17 +8,17 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <div class="form-label-group">
-            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{ __('auth::login.email') }}" required autofocus>
+        <div class="form-group">
             <label for="email">{{ __('auth::login.email') }}</label>
+            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="email@domain.com" required autofocus>
         </div>
 
-        <div class="form-label-group">
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('auth::login.password') }}" required/>
+        <div class="form-group">
             <label for="password">{{ __('auth::login.password') }}</label>
+            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="" required/>
         </div>
 
-        <div class="custom-control custom-checkbox mb-3">
+        <div class="custom-control custom-switch mb-3">
             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
             <label class="custom-control-label" for="remember">{{ __('auth::login.remember-password') }}</label>
         </div>

@@ -18,7 +18,7 @@
             <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="" required/>
         </div>
 
-        <div class="custom-control custom-switch mb-3">
+        <div class="custom-control custom-switch mb-2">
             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
             <label class="custom-control-label" for="remember">{{ __('auth::login.remember-password') }}</label>
         </div>
@@ -37,7 +37,7 @@
     </form>
 
     @if (Route::has('social-login'))
-        <div class="divider div-transparent div-dot mt-5 mb-4"></div>
+        <div class="divider div-transparent div-dot"></div>
 
         <p class="text-center">or login with</p>
 

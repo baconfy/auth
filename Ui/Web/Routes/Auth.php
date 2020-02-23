@@ -12,11 +12,6 @@ class Auth extends HttpRouter
      */
     public function map(Router $router): void
     {
-        $router->view('app', 'ui::app')->name('app');
-
-        // Public Routes...
-        $this->publicRoutes($router);
-
         // Authentication Routes...
         $this->authentication($router);
 
@@ -112,17 +107,5 @@ class Auth extends HttpRouter
     public function socialLogin(Router $router): void
     {
         $router->get('social-login', 'VerificationController@show')->name('social-login');
-    }
-
-    /**
-     * Register the public routes for this application.
-     *
-     * @param Router $router
-     * @return void
-     */
-    private function publicRoutes(Router $router)
-    {
-        $router->get('privacy', 'PoliciesController@privacy')->name('privacy');
-        $router->get('terms', 'PoliciesController@terms')->name('terms');
     }
 }

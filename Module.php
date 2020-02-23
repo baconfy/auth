@@ -1,6 +1,6 @@
 <?php
 
-namespace Baconfy\Auth;
+namespace Baconfy\Dashboard;
 
 use Baconfy\Module\ModuleProvider;
 
@@ -9,7 +9,7 @@ class Module extends ModuleProvider
     /**
      * @var string
      */
-    protected $name = 'auth';
+    protected $name = 'dashboard';
 
     /**
      * @var string

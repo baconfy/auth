@@ -1,6 +1,6 @@
 {
-  "name": "baconfy/auth",
-  "description": "Baconfy auth package.",
+  "name": "baconfy/dashboard",
+  "description": "Baconfy dashboard package.",
   "license": "MIT",
   "homepage": "https://baconfy.com",
   "support": {
@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Baconfy\\Auth\\": ""
+      "Baconfy\\Dashboard\\": ""
     }
   },
   "extra": {
@@ -29,7 +29,7 @@
     },
     "laravel": {
       "providers": [
-        "Baconfy\\Auth\\Module"
+        "Baconfy\\Dashboard\\Module"
       ]
     }
   }

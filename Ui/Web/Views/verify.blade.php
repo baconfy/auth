@@ -14,7 +14,6 @@
     {{ __('auth::verify.receive') }},
     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
         @csrf
-        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('auth::verify.request') }}</button>
-        .
+        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('auth::verify.request') }}</button>.
     </form>
 @endsection

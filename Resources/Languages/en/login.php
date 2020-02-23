@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'title' => 'Restricted area',
-    'welcome' => 'Welcome back! Please sign in to continue.',
+    'title' => 'Welcome back!',
+    'welcome' => 'Please fill your credentials to continue.',
     'action' => 'Sign in',
 
     'email' => 'E-mail address',

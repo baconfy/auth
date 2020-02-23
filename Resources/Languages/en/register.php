@@ -7,6 +7,7 @@ return [
 
     'name' => 'Name',
     'confirm' => 'Confirm Password',
+    'agreement' => 'I agree to the <a href=":url">terms & conditions</a>',
 
     'already-account' => 'I already have an account.',
 ];

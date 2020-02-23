@@ -23,7 +23,9 @@
             <label class="custom-control-label" for="remember">{{ __('auth::login.remember-password') }}</label>
         </div>
 
-        <button class="btn btn-primary btn-block btn-login mb-2" type="submit">{{ __('auth::login.action') }}</button>
+        <button class="btn btn-primary btn-block btn-login" type="submit">{{ __('auth::login.action') }}</button>
+
+        <div class="divider div-transparent"></div>
 
         @if (Route::has('password.request'))
             <div class="text-center"><a class="small" href="{{ route('password.request') }}">{{ __('auth::login.forgot-password') }}</a></div>
@@ -33,4 +35,15 @@
             <div class="text-center"><a class="small" href="{{ route('register') }}">{{ __('auth::login.new-account') }}</a></div>
         @endif
     </form>
+
+    @if (Route::has('social-login'))
+        <div class="divider div-transparent div-dot mt-5 mb-4"></div>
+
+        <p class="text-center">or login with</p>
+
+        <div class="row gutter">
+            <a href="#" class="btn btn-facebook col"><i class="fab fa-facebook-f mr-2"></i> Facebook</a>
+            <a href="#" class="btn btn-google col"><i class="fab fa-google mr-2"></i> Google</a>
+        </div>
+    @endif
 @endsection

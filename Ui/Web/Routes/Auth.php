@@ -12,30 +12,44 @@ class Auth extends HttpRouter
      */
     public function map(Router $router): void
     {
+        $router->view('app', 'ui::app')->name('app');
+
         // Authentication Routes...
-        $router->get('login', 'LoginController@showLoginForm')->name('login');
-        $router->post('login', 'LoginController@login')->name('login');
-        $router->post('logout', 'LoginController@logout')->name('logout');
+        $this->authentication($router);
 
         // Registration Routes...
-        if (config('auth.register') ?? true) {
+        if (config('auth.register')) {
             $this->registration($router);
+
+            if (config('auth.social-login')) {
+                $this->socialLogin($router);
+            }
         }
 
         // Password Reset Routes...
-        if (config('auth.reset') ?? true) {
+        if (config('auth.reset')) {
             $this->resetPassword($router);
         }
 
         // Password Confirmation Routes...
-        if (config('auth.confirm') ?? false) {
+        if (config('auth.confirm')) {
             $this->confirmPassword($router);
         }
 
         // Email Verification Routes...
-        if (config('auth.verify') ?? false) {
+        if (config('auth.verify')) {
             $this->emailVerification($router);
         }
+    }
+
+    /**
+     * @param Router $router
+     */
+    private function authentication(Router $router): void
+    {
+        $router->get('login', 'LoginController@showLoginForm')->name('login');
+        $router->post('login', 'LoginController@login')->name('login');
+        $router->post('logout', 'LoginController@logout')->name('logout');
     }
 
     /**
@@ -84,5 +98,16 @@ class Auth extends HttpRouter
         $router->get('email/verify', 'VerificationController@show')->name('verification.notice');
         $router->get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
         $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
+    }
+
+    /**
+     * Register the typical social login routes for an application.
+     *
+     * @param Router $router
+     * @return void
+     */
+    public function socialLogin(Router $router): void
+    {
+        $router->get('social-login', 'VerificationController@show')->name('social-login');
     }
 }

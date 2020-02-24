@@ -28,7 +28,7 @@
             <input type="password" id="password-confirm" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" required />
         </div>
 
-        @if (Route::has('terms'))
+        @if (Route::has('terms') && Route::has('privacy'))
             <div class="custom-control custom-switch mb-3">
                 <input type="checkbox" class="custom-control-input" name="agreement" id="agreement" {{ old('agreement') ? 'checked' : '' }} />
                 <label class="custom-control-label" for="remember">{!! __('auth::register.agreement', ['terms' => route('terms'), 'privacy' => route('privacy')]) !!}</label>

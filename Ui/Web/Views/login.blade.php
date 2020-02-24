@@ -10,13 +10,19 @@
 
         <div class="form-group">
             <label for="email">{{ __('auth::login.email') }}</label>
-            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="email@domain.com" required autofocus>
+            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="email@domain.com" autofocus>
         </div>
+        @error('email')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
         <div class="form-group">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="" required/>
+            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="" />
         </div>
+        @error('password')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
         <div class="custom-control custom-switch mb-2">
             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />

@@ -3,6 +3,6 @@
 return [
     'title' => 'Reset Password',
     'welcome' => 'Fill this form to create your new password.',
-    'action' => 'Send reset link',
+    'action' => 'Create my new password',
     'password' => 'New password',
 ];

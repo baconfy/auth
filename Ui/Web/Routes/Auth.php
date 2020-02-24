@@ -25,9 +25,9 @@ class Auth extends HttpRouter
         }
 
         // Password Reset Routes...
-        if (config('auth.reset')) {
+//        if (config('auth.reset')) {
             $this->resetPassword($router);
-        }
+//        }
 
         // Password Confirmation Routes...
         if (config('auth.confirm')) {

@@ -3,6 +3,7 @@
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use App\Http\Controllers\Controller;
+use Baconfy\Auth\Module;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = Module::HOME;
 
     /**
      * Create a new controller instance.

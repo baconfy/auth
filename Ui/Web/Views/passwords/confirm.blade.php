@@ -8,15 +8,13 @@
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
-        <div class="form-group">
+        <div class="form-group @error('password') is-invalid @enderror">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('auth::login.password') }}" required autofocus />
+            <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('auth::login.password') }}" autofocus />
         </div>
 
         @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
 
         <button type="submit" class="btn btn-primary btn-block btn-login mb-2">

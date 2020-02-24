@@ -8,25 +8,37 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <div class="form-group">
+        <div class="form-group @error('name') is-invalid @enderror">
             <label for="name">{{ __('auth::register.name') }}</label>
-            <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="{{ __('auth::register.name') }}" required autofocus />
+            <input type="text" id="name" class="form-control" name="name" placeholder="{{ __('auth::register.name') }}" autofocus />
         </div>
+        @error('name')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
-        <div class="form-group">
+        <div class="form-group @error('email') is-invalid @enderror">
             <label for="email">{{ __('auth::login.email') }}</label>
-            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{ __('auth::login.email') }}" required autofocus />
+            <input type="text" id="email" class="form-control" name="email" placeholder="{{ __('auth::login.email') }}" />
         </div>
+        @error('email')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
-        <div class="form-group">
+        <div class="form-group @error('password') is-invalid @enderror">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('auth::login.password') }}" required />
+            <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('auth::login.password') }}" />
         </div>
+        @error('password')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
-        <div class="form-group">
+        <div class="form-group @error('password_confirmation') is-invalid @enderror">
             <label for="password-confirm">{{ __('auth::register.confirm') }}</label>
-            <input type="password" id="password-confirm" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" required />
+            <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" />
         </div>
+        @error('password_confirmation')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
         @if (Route::has('terms') && Route::has('privacy'))
             <div class="custom-control custom-switch mb-3">

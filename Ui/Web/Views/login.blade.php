@@ -8,18 +8,20 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <div class="form-group">
+        <div class="form-group @error('email') is-invalid @enderror">
             <label for="email">{{ __('auth::login.email') }}</label>
-            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="email@domain.com" autofocus>
+            <input type="text" id="email" class="form-control" name="email" placeholder="email@domain.com" autofocus>
         </div>
+
         @error('email')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
 
-        <div class="form-group">
+        <div class="form-group  @error('password') is-invalid @enderror">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="" />
+            <input type="password" id="password" class="form-control" name="password" placeholder="" />
         </div>
+
         @error('password')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror

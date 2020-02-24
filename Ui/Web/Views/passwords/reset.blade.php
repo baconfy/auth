@@ -9,20 +9,32 @@
         <input type="hidden" name="token" value="{{ $token }}">
         @csrf
 
-        <div class="form-group">
+        <div class="form-group @error('email') is-invalid @enderror">
             <label for="email">{{ __('auth::login.email') }}</label>
-            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{ __('auth::login.email') }}" value="{{ $email ?? old('email') }}" required >
+            <input type="text" id="email" class="form-control" name="email" placeholder="{{ __('auth::login.email') }}" value="{{ $email ?? old('email') }}" >
         </div>
 
-        <div class="form-group">
+        @error('email')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
+
+        <div class="form-group @error('password') is-invalid @enderror">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('auth::login.password') }}" required autofocus />
+            <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('auth::login.password') }}" autofocus />
         </div>
 
-        <div class="form-group">
+        @error('password')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
+
+        <div class="form-group @error('password_confirmation') is-invalid @enderror">
             <label for="password-confirm">{{ __('auth::register.confirm') }}</label>
-            <input type="password" id="password-confirm" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" required/>
+            <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" />
         </div>
+
+        @error('password_confirmation')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
 
         <button class="btn btn-primary btn-block btn-login mb-2" type="submit">{{ __('auth::reset.action') }}</button>
 

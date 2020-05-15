@@ -1,10 +1,9 @@
 @extends('ui::layouts.auth')
 
 @section('title', __('auth::register.title'))
+@section('welcome', __('auth::register.welcome'))
 
 @section('content')
-    <p>{{ __('auth::register.welcome') }}</p>
-
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

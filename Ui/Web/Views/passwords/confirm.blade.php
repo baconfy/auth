@@ -1,10 +1,9 @@
 @extends('ui::layouts.auth')
 
 @section('title', __('auth::confirm-password.title'))
+@section('welcome', __('auth::confirm-password.welcome'))
 
 @section('content')
-    <p>{{ __('auth::confirm-password.welcome') }}</p>
-
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 

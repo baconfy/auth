@@ -4,8 +4,8 @@
   "license": "MIT",
   "homepage": "https://baconfy.com",
   "support": {
-    "issues": "https://github.com/baconfy/framework/issues",
-    "source": "https://github.com/baconfy/framework"
+    "issues": "https://github.com/baconfy/auth/issues",
+    "source": "https://github.com/baconfy/auth"
   },
   "authors": [
     {
@@ -14,10 +14,7 @@
     }
   ],
   "require": {
-    "baconfy/support": "^6.0",
-    "baconfy/module": "^6.0",
-    "baconfy/ui": "^6.0",
-    "baconfy/dashboard": "^1.0"
+    "baconfy/framework": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -26,7 +23,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "6.x-dev"
+      "dev-master": "1.x-dev"
     },
     "laravel": {
       "providers": [

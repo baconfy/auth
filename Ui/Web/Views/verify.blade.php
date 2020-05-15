@@ -1,6 +1,7 @@
 @extends('ui::layouts.auth')
 
 @section('title', __('auth::verify.title'))
+@section('welcome', __('auth::verify.welcome'))
 
 @section('content')
     @if (session('resent'))
@@ -9,7 +10,6 @@
         </div>
     @endif
 
-    <p>{{ __('auth::verify.welcome') }}</p>
     {{ __('auth::verify.before') }}
     {{ __('auth::verify.receive') }},
     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">

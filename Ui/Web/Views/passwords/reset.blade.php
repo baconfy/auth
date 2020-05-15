@@ -1,17 +1,16 @@
 @extends('ui::layouts.auth')
 
 @section('title', __('auth::reset.title'))
+@section('welcome', __('auth::reset.welcome'))
 
 @section('content')
-    <p>{{ __('auth::reset.welcome') }}</p>
-
     <form method="POST" action="{{ route('password.update') }}">
         <input type="hidden" name="token" value="{{ $token }}">
         @csrf
 
-        <div class="form-group @error('email') is-invalid @enderror">
-            <label for="email">{{ __('auth::login.email') }}</label>
-            <input type="text" id="email" class="form-control" name="email" placeholder="{{ __('auth::login.email') }}" value="{{ $email ?? old('email') }}" >
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">{{ __('auth::login.email') }}</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" name="email" placeholder="{{ __('auth::login.email') }}" value="{{ $email ?? old('email') }}">
         </div>
 
         @error('email')
@@ -20,7 +19,7 @@
 
         <div class="form-group @error('password') is-invalid @enderror">
             <label for="password">{{ __('auth::login.password') }}</label>
-            <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('auth::login.password') }}" autofocus />
+            <input type="password" id="password" class="form-control" name="password" placeholder="{{ __('auth::login.password') }}" autofocus/>
         </div>
 
         @error('password')
@@ -29,7 +28,7 @@
 
         <div class="form-group @error('password_confirmation') is-invalid @enderror">
             <label for="password-confirm">{{ __('auth::register.confirm') }}</label>
-            <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}" />
+            <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="{{ __('auth::register.confirm') }}"/>
         </div>
 
         @error('password_confirmation')

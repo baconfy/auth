@@ -1,10 +1,9 @@
 @extends('ui::layouts.auth')
 
 @section('title', __('auth::email.title'))
+@section('welcome', __('auth::email.welcome'))
 
 @section('content')
-    <p>{{ __('auth::email.welcome') }}</p>
-
     @if (session('status'))
         <div class="alert alert-success" role="alert">{{ session('status') }}</div>
     @endif

@@ -2,7 +2,7 @@
 
 namespace Baconfy\Auth;
 
-use Baconfy\Module\ModuleProvider;
+use Baconfy\Loader\ModuleProvider;
 
 class Module extends ModuleProvider
 {

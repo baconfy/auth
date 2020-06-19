@@ -14,7 +14,8 @@
     }
   ],
   "require": {
-    "baconfy/framework": "^1.0"
+    "baconfy/framework": "^1.0",
+    "baconfy/dashboard": "^1.0"
   },
   "autoload": {
     "psr-4": {

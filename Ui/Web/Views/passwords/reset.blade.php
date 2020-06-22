@@ -4,65 +4,35 @@
 @section('welcome', __('auth::reset.welcome'))
 
 @section('content')
-    <div class="container mx-auto">
-        <div class="flex flex-wrap justify-center">
-            <div class="w-full max-w-sm">
-                <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+    <section class="mt-1">
+        <form class="form" method="POST" action="{{ route('register') }}">
+            @csrf
 
-                    <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                        {{ __('Reset Password') }}
-                    </div>
-
-                    <form class="w-full p-6" method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="flex flex-wrap mb-6">
-                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('E-Mail Address') }}:
-                            </label>
-
-                            <input id="email" type="email" class="form-input w-full @error('email') border-red-500 @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                            @error('email')
-                            <p class="text-red-500 text-xs italic mt-4">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
-
-                        <div class="flex flex-wrap mb-6">
-                            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('Password') }}:
-                            </label>
-
-                            <input id="password" type="password" class="form-input w-full @error('password') border-red-500 @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                            <p class="text-red-500 text-xs italic mt-4">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
-
-                        <div class="flex flex-wrap mb-6">
-                            <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('Confirm Password') }}:
-                            </label>
-
-                            <input id="password-confirm" type="password" class="form-input w-full" name="password_confirmation" required autocomplete="new-password">
-                        </div>
-
-                        <div class="flex flex-wrap">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold  py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                {{ __('Reset Password') }}
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+            <div class="input @error('email') border-red-500 @enderror">
+                <label class="@error('email') text-red-500 @enderror" for="email">{{ __('auth::login.email') }}</label>
+                <input id="email" type="email" class="@error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"/>
+                @error('email')<p>{{ $message }}</p>@enderror
             </div>
-        </div>
-    </div>
+
+            <div class="input @error('password') border-red-500 @enderror">
+                <label class="@error('password') text-red-500 @enderror" for="password">{{ __('auth::reset.password') }}</label>
+                <input id="password" type="password" class="@error('password') border-red-500 @enderror" name="password" required autocomplete="new-password">
+                @error('password')<p>{{ $message }}</p>@enderror
+            </div>
+
+            <div class="input @error('password_confirmation') border-red-500 @enderror">
+                <label class="@error('password_confirmation') text-red-500 @enderror" for="password">{{ __('auth::register.confirm') }}</label>
+                <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
+                @error('password_confirmation')<p>{{ $message }}</p>@enderror
+            </div>
+
+            <button class="block w-full rounded bg-primary text-white p-3 mt-4 mb-8" type="submit">{{ __('auth::reset.action') }}</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <p class="w-full text-xs text-center text-gray-700 mt-8 -mb-4">
+            {{ __('auth::register.already-account') }} <a class="text-blue-500 hover:text-blue-700 no-underline" href="{{ route('login') }}">{{ __('auth::register.back-action') }}</a>
+        </p>
+    </section>
 @endsection

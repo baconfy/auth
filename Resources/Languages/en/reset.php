@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Reset Password',
-    'welcome' => 'Fill this form to create your new password.',
-    'action' => 'Create my new password',
+    'welcome' => 'Fill this form to reset your password.',
+    'action' => 'Reset my password',
     'password' => 'New password',
 ];

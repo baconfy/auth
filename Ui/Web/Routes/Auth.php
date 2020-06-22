@@ -8,7 +8,7 @@ use Illuminate\Contracts\Routing\Registrar as Router;
 class Auth extends HttpRouter
 {
     /**
-     * @inheritDoc
+     * @param Router $router
      */
     public function map(Router $router): void
     {
@@ -25,9 +25,9 @@ class Auth extends HttpRouter
         }
 
         // Password Reset Routes...
-//        if (config('auth.reset')) {
+        if (config('auth.reset')) {
             $this->resetPassword($router);
-//        }
+        }
 
         // Password Confirmation Routes...
         if (config('auth.confirm')) {

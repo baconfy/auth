@@ -4,6 +4,7 @@ namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Response;
 
 class ForgotPasswordController extends Controller
 {
@@ -12,10 +13,10 @@ class ForgotPasswordController extends Controller
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function showLinkRequestForm()
     {
-        return view('auth::passwords.email');
+        return view('ui::auth.passwords.email');
     }
 }

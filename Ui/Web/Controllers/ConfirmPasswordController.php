@@ -5,6 +5,7 @@ namespace Baconfy\Auth\Ui\Web\Controllers;
 use App\Http\Controllers\Controller;
 use Baconfy\Auth\Module;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Http\Response;
 
 class ConfirmPasswordController extends Controller
 {
@@ -30,10 +31,10 @@ class ConfirmPasswordController extends Controller
     /**
      * Display the password confirmation view.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function showConfirmForm()
     {
-        return view('auth::passwords.confirm');
+        return view('ui::auth.passwords.confirm');
     }
 }

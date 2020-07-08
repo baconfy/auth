@@ -47,7 +47,7 @@ class Auth extends HttpRouter
     {
         $router->get('login', 'LoginController@showLoginForm')->name('login');
         $router->post('login', 'LoginController@login')->name('login');
-        $router->post('logout', 'LoginController@logout')->name('logout');
+        $router->any('logout', 'LoginController@logout')->name('logout');
     }
 
     /**

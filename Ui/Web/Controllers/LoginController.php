@@ -5,6 +5,7 @@ namespace Baconfy\Auth\Ui\Web\Controllers;
 use App\Http\Controllers\Controller;
 use Baconfy\Auth\Module;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -30,10 +31,10 @@ class LoginController extends Controller
     /**
      * Show the application's login form.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function showLoginForm()
     {
-        return view('auth::login');
+        return view('ui::auth.login');
     }
 }

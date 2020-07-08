@@ -16,10 +16,18 @@ class Module extends ModuleProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/dashboard';
 
     /**
      * @var string
      */
     protected $namespace = __NAMESPACE__;
+
+    /**
+     * Boot assets
+     */
+    private function bootAssets()
+    {
+        $this->publishes([$this->getClassDirectory('Resources/Assets/css') => public_path('baconfy/auth')], 'public');
+    }
 }

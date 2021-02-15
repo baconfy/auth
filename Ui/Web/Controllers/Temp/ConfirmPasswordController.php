@@ -3,7 +3,7 @@
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use Baconfy\Auth\AuthServiceProvider;
-use App\Http\Controllers\Controller;
+use Baconfy\Http\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 

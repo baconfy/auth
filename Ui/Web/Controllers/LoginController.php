@@ -3,20 +3,17 @@
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use App\Http\Controllers\Controller;
-use Baconfy\Auth\Module;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = Module::HOME;
+    protected $redirectTo = AuthServiceProvider::HOME;
 
     /**
      * Create a new controller instance.

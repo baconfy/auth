@@ -3,7 +3,7 @@
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use App\Http\Controllers\Controller;
-use Baconfy\Auth\Module;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = Module::HOME;
+    protected $redirectTo = AuthServiceProvider::HOME;
 
     /**
      * Display the password reset view for the given token.

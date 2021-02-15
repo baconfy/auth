@@ -2,10 +2,10 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
+use Baconfy\Auth\AuthServiceProvider;
 use App\Http\Controllers\Controller;
-use Baconfy\Auth\Module;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
-use Illuminate\Http\Response;
 
 class ConfirmPasswordController extends Controller
 {
@@ -16,7 +16,7 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = Module::HOME;
+    protected $redirectTo = AuthServiceProvider::HOME;
 
     /**
      * Create a new controller instance.

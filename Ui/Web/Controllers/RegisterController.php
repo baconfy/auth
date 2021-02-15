@@ -2,9 +2,9 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\User;
-use Baconfy\Auth\Module;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +19,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = Module::HOME;
+    protected $redirectTo = AuthServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return app(Auth::guard('web')->getProvider()->getModel())->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

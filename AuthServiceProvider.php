@@ -4,7 +4,7 @@ namespace Baconfy\Auth;
 
 use Baconfy\Loader\ModuleProvider;
 
-class Module extends ModuleProvider
+class AuthServiceProvider extends ModuleProvider
 {
     /**
      * @var string

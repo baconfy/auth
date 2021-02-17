@@ -2,8 +2,8 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
-use Baconfy\Http\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Http\Request;
 
 class EmailVerificationNotificationController extends Controller
@@ -17,7 +17,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(AuthServiceProvider::HOME);
         }
 
         $request->user()->sendEmailVerificationNotification();

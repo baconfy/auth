@@ -2,8 +2,8 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
-use Baconfy\Http\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -18,7 +18,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(Request $request)
     {
-        return view('ui::auth.passwords.confirm');
+        return view('auth.confirm-password');
     }
 
     /**
@@ -35,6 +35,6 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(AuthServiceProvider::HOME);
     }
 }

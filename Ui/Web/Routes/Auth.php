@@ -2,6 +2,14 @@
 
 namespace Baconfy\Auth\Ui\Web\Routes;
 
+use Baconfy\Auth\Ui\Web\Controllers\AuthenticatedSessionController;
+use Baconfy\Auth\Ui\Web\Controllers\ConfirmablePasswordController;
+use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationNotificationController;
+use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationPromptController;
+use Baconfy\Auth\Ui\Web\Controllers\NewPasswordController;
+use Baconfy\Auth\Ui\Web\Controllers\PasswordResetLinkController;
+use Baconfy\Auth\Ui\Web\Controllers\RegisteredUserController;
+use Baconfy\Auth\Ui\Web\Controllers\VerifyEmailController;
 use Baconfy\Routing\HttpRouter;
 use Illuminate\Contracts\Routing\Registrar as Router;
 
@@ -45,9 +53,9 @@ class Auth extends HttpRouter
      */
     private function authentication(Router $router): void
     {
-        $router->get('login', 'LoginController@showLoginForm')->name('login');
-        $router->post('login', 'LoginController@login')->name('login');
-        $router->any('logout', 'LoginController@logout')->name('logout');
+        $router->get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
+        $router->post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
+        $router->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
     }
 
     /**
@@ -55,8 +63,8 @@ class Auth extends HttpRouter
      */
     public function registration(Router $router): void
     {
-        $router->get('register', 'RegisterController@showRegistrationForm')->name('register');
-        $router->post('register', 'RegisterController@register')->name('register');
+        $router->get('/register', [RegisteredUserController::class, 'create'])->middleware('guest')->name('register');
+        $router->post('/register', [RegisteredUserController::class, 'store'])->middleware('guest');
     }
 
     /**
@@ -67,10 +75,10 @@ class Auth extends HttpRouter
      */
     public function resetPassword(Router $router): void
     {
-        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-        $router->post('password/reset', 'ResetPasswordController@reset')->name('password.update');
+        $router->get('/forgot-password', [PasswordResetLinkController::class, 'create'])->middleware('guest')->name('password.request');
+        $router->post('/forgot-password', [PasswordResetLinkController::class, 'store'])->middleware('guest')->name('password.email');
+        $router->get('/reset-password/{token}', [NewPasswordController::class, 'create'])->middleware('guest')->name('password.reset');
+        $router->post('/reset-password', [NewPasswordController::class, 'store'])->middleware('guest')->name('password.update');
     }
 
     /**
@@ -81,8 +89,8 @@ class Auth extends HttpRouter
      */
     public function confirmPassword(Router $router): void
     {
-        $router->get('password/confirm', 'ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-        $router->post('password/confirm', 'ConfirmPasswordController@confirm')->name('password.confirm');
+        $router->get('/confirm-password', [ConfirmablePasswordController::class, 'show'])->middleware('auth')->name('password.confirm');
+        $router->post('/confirm-password', [ConfirmablePasswordController::class, 'store'])->middleware('auth');
     }
 
     /**
@@ -93,9 +101,9 @@ class Auth extends HttpRouter
      */
     public function emailVerification(Router $router): void
     {
-        $router->get('email/verify', 'VerificationController@show')->name('verification.notice');
-        $router->get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
-        $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
+        $router->get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->middleware('auth')->name('verification.notice');
+        $router->get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
+        $router->post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
     }
 
     /**
@@ -106,6 +114,5 @@ class Auth extends HttpRouter
      */
     public function socialLogin(Router $router): void
     {
-        $router->get('social-login', 'VerificationController@show')->name('social-login');
     }
 }

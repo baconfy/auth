@@ -2,9 +2,9 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
-use Baconfy\Http\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(AuthServiceProvider::HOME);
     }
 }

@@ -1,11 +1,12 @@
+
 {
   "name": "baconfy/auth",
-  "description": "Baconfy auth package.",
+  "description": "The baconfy auth package.",
   "license": "MIT",
   "homepage": "https://baconfy.com",
   "support": {
-    "issues": "https://github.com/baconfy/auth/issues",
-    "source": "https://github.com/baconfy/auth"
+    "issues": "https://github.com/baconfy/framework/issues",
+    "source": "https://github.com/baconfy/framework"
   },
   "authors": [
     {
@@ -24,11 +25,10 @@
   "extra": {
     "branch-alias": {
       "dev-master": "1.x-dev"
-    },
-    "laravel": {
-      "providers": [
-        "Baconfy\\Auth\\AuthServiceProvider"
-      ]
     }
-  }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev"
 }

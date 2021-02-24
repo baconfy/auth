@@ -1,4 +1,3 @@
-
 {
   "name": "baconfy/auth",
   "description": "The baconfy auth package.",
@@ -25,6 +24,11 @@
   "extra": {
     "branch-alias": {
       "dev-master": "1.x-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Baconfy\\Auth\\AuthServiceProvider"
+      ]
     }
   },
   "config": {

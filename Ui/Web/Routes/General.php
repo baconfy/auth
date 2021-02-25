@@ -8,6 +8,7 @@ use Baconfy\Auth\Ui\Web\Controllers\PasswordResetLinkController;
 use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationPromptController;
 use Baconfy\Auth\Ui\Web\Controllers\VerifyEmailController;
 use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationNotificationController;
+use Baconfy\Auth\Ui\Web\Controllers\ConfirmablePasswordController;
 use Baconfy\Routing\HttpRouter;
 use Illuminate\Contracts\Routing\Registrar as Router;
 
@@ -38,6 +39,11 @@ class General extends HttpRouter
         // Password Reset Routes...
         if (config('auth.verify')) {
             $this->emailVerification($router);
+        }
+
+        // Password Confirmation Routes...
+        if (config('auth.confirm')) {
+            $this->passwordConfirmation($router);
         }
 
         $router->get('/terms', [AuthenticatedSessionController::class, 'create'])->name('terms');
@@ -85,6 +91,15 @@ class General extends HttpRouter
         $router->get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->middleware('auth')->name('verification.notice');
         $router->get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
         $router->post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    }
+
+    /**
+     * @param Router $router
+     */
+    private function passwordConfirmation(Router $router)
+    {
+        $router->get('/confirm-password', [ConfirmablePasswordController::class, 'show'])->middleware('auth')->name('password.confirm');
+        $router->post('/confirm-password', [ConfirmablePasswordController::class, 'store'])->middleware('auth');
     }
 
     /**

@@ -5,6 +5,9 @@ namespace Baconfy\Auth\Ui\Web\Routes;
 use Baconfy\Auth\Ui\Web\Controllers\AuthenticatedSessionController;
 use Baconfy\Auth\Ui\Web\Controllers\RegisteredUserController;
 use Baconfy\Auth\Ui\Web\Controllers\PasswordResetLinkController;
+use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationPromptController;
+use Baconfy\Auth\Ui\Web\Controllers\VerifyEmailController;
+use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationNotificationController;
 use Baconfy\Routing\HttpRouter;
 use Illuminate\Contracts\Routing\Registrar as Router;
 
@@ -30,6 +33,11 @@ class General extends HttpRouter
         // Password Reset Routes...
         if (config('auth.reset')) {
             $this->resetPassword($router);
+        }
+
+        // Password Reset Routes...
+        if (config('auth.verify')) {
+            $this->emailVerification($router);
         }
 
         $router->get('/terms', [AuthenticatedSessionController::class, 'create'])->name('terms');
@@ -60,11 +68,23 @@ class General extends HttpRouter
      */
     private function resetPassword(Router $router)
     {
+        // Forgot routes
         $router->get('/forgot-password', [PasswordResetLinkController::class, 'create'])->middleware('guest')->name('password.request');
         $router->post('/forgot-password', [PasswordResetLinkController::class, 'store'])->middleware('guest')->name('password.email');
 
+        // Reset routes
         $router->get('/reset-password/{token}', [NewPasswordController::class, 'create'])->middleware('guest')->name('password.reset');
         $router->post('/reset-password', [NewPasswordController::class, 'store'])->middleware('guest')->name('password.update');
+    }
+
+    /**
+     * @param Router $router
+     */
+    private function emailVerification(Router $router)
+    {
+        $router->get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->middleware('auth')->name('verification.notice');
+        $router->get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
+        $router->post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
     }
 
     /**

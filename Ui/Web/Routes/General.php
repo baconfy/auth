@@ -9,7 +9,9 @@ use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationPromptController;
 use Baconfy\Auth\Ui\Web\Controllers\VerifyEmailController;
 use Baconfy\Auth\Ui\Web\Controllers\EmailVerificationNotificationController;
 use Baconfy\Auth\Ui\Web\Controllers\ConfirmablePasswordController;
+use Baconfy\Auth\Ui\Web\Controllers\NewPasswordController;
 use Baconfy\Routing\HttpRouter;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Routing\Registrar as Router;
 
 class General extends HttpRouter
@@ -36,13 +38,13 @@ class General extends HttpRouter
             $this->resetPassword($router);
         }
 
-        // Password Reset Routes...
-        if (config('auth.verify')) {
+        // Password Email Verification...
+        if (app(config('auth.user')) instanceof MustVerifyEmail) {
             $this->emailVerification($router);
         }
 
         // Password Confirmation Routes...
-        if (config('auth.confirm')) {
+        if (config('auth.user')) {
             $this->passwordConfirmation($router);
         }
 

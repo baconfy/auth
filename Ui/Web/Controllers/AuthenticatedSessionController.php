@@ -3,11 +3,12 @@
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
 use Baconfy\Http\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use Baconfy\Auth\Ui\Web\Requests\LoginRequest;
 use Baconfy\Auth\AuthServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -17,7 +18,7 @@ class AuthenticatedSessionController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('ui::auth.login');
     }
@@ -27,8 +28,9 @@ class AuthenticatedSessionController extends Controller
      *
      * @param LoginRequest $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
         $request->session()->regenerate();
@@ -42,7 +44,7 @@ class AuthenticatedSessionController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 

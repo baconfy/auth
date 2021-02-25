@@ -2,21 +2,23 @@
 
 namespace Baconfy\Auth\Ui\Web\Controllers;
 
+use Baconfy\Auth\AuthServiceProvider;
 use Baconfy\Http\Controller;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
     /**
      * Show the confirm password view.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function show(Request $request)
+    public function show(Request $request): View
     {
         return view('ui::auth.confirm-password');
     }
@@ -24,22 +26,18 @@ class ConfirmablePasswordController extends Controller
     /**
      * Confirm the user's password.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
-            'password' => $request->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
+        if (!Auth::guard('web')->validate(['email' => $request->user()->email, 'password' => $request->password])) {
+            throw ValidationException::withMessages(['password' => __('auth.password')]);
         }
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(AuthServiceProvider::HOME);
     }
 }
